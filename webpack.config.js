@@ -4,11 +4,14 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 
 module.exports = {
     entry: "./src/index.js",
+    mode: "development",
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
         libraryTarget: 'umd',
-        library: 'importMe'
+        library: 'importMe',
+        globalObject: "this",
+        umdNamedDefine: true
     },
     optimization: {
         splitChunks: {
@@ -31,7 +34,7 @@ module.exports = {
             {
                 test: /\.(s*)css$/,
                 use: [
-                    'style-loader', 
+                    'isomorphic-style-loader',
                     'css-loader',
                     'sass-loader',
                 ]

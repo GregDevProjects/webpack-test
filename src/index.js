@@ -1,6 +1,8 @@
 import React from 'react'
 import './style.css'
-import './sass.scss'
+import s from './sass.scss'
+
+import useStyles from 'isomorphic-style-loader/useStyles'
 
 const G = () => { 
     return( 
@@ -11,6 +13,11 @@ const G = () => {
     )
 }
 
-const I = () => <div class="s">SCSS</div>
+const I = () =>{
+    useStyles(s);
+     return <div className={s.s}>SCSS</div>
+    }
 
+
+//
 export {G, I}
