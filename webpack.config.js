@@ -6,7 +6,9 @@ module.exports = {
     entry: "./src/index.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "dist")
+        path: path.resolve(__dirname, "dist"),
+        libraryTarget: 'umd',
+        library: 'importMe'
     },
     optimization: {
         splitChunks: {
@@ -17,7 +19,6 @@ module.exports = {
         contentBase: path.join(__dirname, "dist"),
         port: 9000
     },
-    plugins: [new HtmlWebpackPlugin()],
     module: {
         rules: [
             {
