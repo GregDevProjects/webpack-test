@@ -13,7 +13,4 @@ const G = () => {
     )
 }
 
-render(
-    <G/>,
-    document.getElementById('target')
-)
+export default G
