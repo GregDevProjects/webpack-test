@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css'
 import s from './sass.scss'
 
-import useStyles from 'isomorphic-style-loader/useStyles'
+// import useStyles from 'isomorphic-style-loader/useStyles'
 
 const G = () => { 
     return( 
@@ -14,7 +14,7 @@ const G = () => {
 }
 
 const I = () =>{
-    useStyles(s);
+    // useStyles(s);
      return <div className={s.s}>SCSS</div>
     }
 
