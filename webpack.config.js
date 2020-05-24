@@ -1,6 +1,7 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: "./src/index.js",
@@ -31,7 +32,10 @@ module.exports = {
             {
                 test: /\.(s*)css$/,
                 use: [
-                    'style-loader', 
+                    ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader', 'sass-loader']
+                      }),
                     'css-loader',
                     'sass-loader',
                 ]
