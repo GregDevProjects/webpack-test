@@ -1,15 +1,18 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: "./src/index.js",
+    mode: "development",
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
         libraryTarget: 'umd',
-        library: 'importMe'
+        globalObject: "this",
+        umdNamedDefine: true,
+        libraryTarget: "umd"
     },
     optimization: {
         splitChunks: {
@@ -20,6 +23,7 @@ module.exports = {
         contentBase: path.join(__dirname, "dist"),
         port: 9000
     },
+    plugins: [new MiniCssExtractPlugin()],
     module: {
         rules: [
             {
@@ -31,14 +35,8 @@ module.exports = {
             },
             {
                 test: /\.(s*)css$/,
-                use: [
-                    ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: ['css-loader', 'sass-loader']
-                      }),
-                    'css-loader',
-                    'sass-loader',
-                ]
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                
             },
             {
                 test: /\.(png|jpg)$/,
