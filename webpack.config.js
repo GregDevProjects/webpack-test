@@ -10,6 +10,7 @@ module.exports = {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
         libraryTarget: 'umd',
+        library: 'YourLibrary',
         globalObject: "this",
         umdNamedDefine: true,
         libraryTarget: "umd"
